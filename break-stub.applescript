@@ -5,7 +5,7 @@ on alfred_script(q)
     set appsToQuit to {}
     
     -- A list of apps to start when switching to this state
-    set appsToLaunch to {"Messages", "Textual 5"}
+    set appsToLaunch to {"Messages", "Textual 5", "Slack"}
     
     if dnd_is_enabled() then
         disable_dnd()

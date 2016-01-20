@@ -2,7 +2,7 @@
 on alfred_script(q)
     
     -- A list of apps to quit when switching to this state
-    set appsToQuit to {"Messages", "Textual 5"}
+    set appsToQuit to {"Messages", "Textual 5", "Slack"}
     
     -- A list of apps to start when switching to this state
     set appsToLaunch to {"Pomodoro Time Pro"}
