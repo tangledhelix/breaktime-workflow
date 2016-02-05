@@ -1,4 +1,3 @@
-
 -- Determine whether a named app is running
 on is_running(appName)
     tell application "System Events" to (name of processes) contains appName
