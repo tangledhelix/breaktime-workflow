@@ -3,6 +3,9 @@ A simple Alfred workflow to help automate when I start "working" mode
 ([Pomodoro][1]), and when I go back to "break-time" mode.
 
 Uses a configurable list of apps to start or quit when switching modes.
+Can hide (close) all windows of an app, and close a series of tabs in
+Google Chrome.
+
 Also turns Do Not Disturb mode on or off in Notification Center.
 
 Use "work" or "break" keywords in Alfred to trigger.

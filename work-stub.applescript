@@ -2,9 +2,15 @@ on alfred_script(q)
 
     -- A list of apps to quit when switching to this state
     set appsToQuit to {"Messages", "Textual 5", "Slack"}
+    
+    -- A list of apps to close windows (not quit) when switching to this state
+    set appsToCloseWindows to {"Mail"}
 
     -- A list of apps to start when switching to this state
     set appsToLaunch to {}
+    
+    -- A list of URL prefixes to close (assumes Google Chrome is browser)
+    set urlsToClose to {"https://www.fastmail.com/"}
 
     if not dnd_is_enabled() then
         enable_dnd()
@@ -13,6 +19,22 @@ on alfred_script(q)
     repeat with i from 1 to the count of appsToQuit
         tell application (item i of appsToQuit) to quit
     end repeat
+
+    repeat with i from 1 to the count of appsToCloseWindows
+        tell application (item i of appsToCloseWindows) to close every window
+    end repeat
+
+    tell application "Google Chrome"
+        repeat with thisWindow in windows
+            repeat with thisTab in tabs of thisWindow
+                repeat with thisUrl in urlsToClose
+                    if URL of thisTab starts with thisUrl then
+                        tell thisTab to close
+                    end if
+                end repeat
+            end repeat
+        end repeat
+    end tell
 
     repeat with i from 1 to the count of appsToLaunch
         tell application (item i of appsToLaunch)
@@ -23,17 +45,5 @@ on alfred_script(q)
             reopen
         end tell
     end repeat
-
-    tell application "Google Chrome"
-        repeat with thisWindow in windows
-            repeat with thisTab in tabs of thisWindow
-                if URL of thisTab starts with "https://www.fastmail.com/" then
-                    tell thisTab to close
-                end if
-            end repeat
-        end repeat
-    end tell
-
-    tell application "Mail" to close every window
 
 end alfred_script
