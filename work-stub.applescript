@@ -1,7 +1,7 @@
 on alfred_script(q)
 
     -- A list of apps to quit when switching to this state
-    set appsToQuit to {"Messages", "Textual 5", "Slack"}
+    set appsToQuit to {"Messages", "Slack"}
     
     -- A list of apps to close windows (not quit) when switching to this state
     set appsToCloseWindows to {"Mail"}
