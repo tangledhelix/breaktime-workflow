@@ -33,10 +33,56 @@ end change_dnd
 
 -- Turn Do Not Disturb off
 on disable_dnd()
-    change_dnd("Notification Center, Do Not Disturb enabled")
+    if dnd_is_enabled() then
+        change_dnd("Notification Center, Do Not Disturb enabled")
+    end if
 end disable_dnd
 
 -- Turn Do Not Disturb on
 on enable_dnd()
-    change_dnd("Notification Center")
+    if not dnd_is_enabled() then
+        change_dnd("Notification Center")
+    end if
 end enable_dnd
+
+-- Quit one or more apps
+on quit_apps(appList)
+    repeat with i from 1 to the count of appList
+        tell application (item i of appList) to quit
+    end repeat
+end quit_apps
+
+-- Launch one or more apps
+on launch_apps(appList)
+    repeat with i from 1 to the count of appList
+        tell application (item i of appList)
+            -- This will launch app if not open, and sometimes open main window
+            activate
+            -- This will open main window as if you clicked on dock icon.
+            -- Some apps choose not to do this simply on "activate"
+            reopen
+        end tell
+    end repeat
+end launch_apps
+
+-- Close all windows (but not quit) one or more apps
+on close_app_windows(appList)
+    repeat with i from 1 to the count of appList
+        tell application (item i of appList) to close every window
+    end repeat
+end close_app_windows
+
+-- Close tabs in Google Chrome, if open
+on close_google_chrome_tabs(urlList)
+    tell application "Google Chrome"
+        repeat with thisWindow in windows
+            repeat with thisTab in tabs of thisWindow
+                repeat with thisUrl in urlList
+                    if URL of thisTab starts with thisUrl then
+                        tell thisTab to close
+                    end if
+                end repeat
+            end repeat
+        end repeat
+    end tell
+end close_google_chrome_tabs
