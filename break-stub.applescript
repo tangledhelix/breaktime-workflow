@@ -7,7 +7,7 @@ on alfred_script(q)
     set appsToCloseWindows to {}
 
     -- A list of apps to start when switching to this state
-    set appsToLaunch to {"Messages", "Slack"}
+    set appsToLaunch to {"Slack", "Textual 5"}
 
     -- A list of URL prefixes to close (assumes Google Chrome is browser)
     set urlsToClose to {}
