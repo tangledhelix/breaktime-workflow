@@ -1,8 +1,3 @@
--- Determine whether a named app is running
-on is_running(appName)
-    tell application "System Events" to (name of processes) contains appName
-end is_running
-
 -- Determine whether Do Not Disturb is enabled in Notification Center
 on dnd_is_enabled()
     tell application "System Events"
